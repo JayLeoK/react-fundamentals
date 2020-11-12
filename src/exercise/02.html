@@ -18,9 +18,10 @@
     // element.textContent = 'Hello World' // 💰 in React, you set this with the "children" prop
     // element.className = 'container' // 💰 in React, this is also called the "className" prop
 
-    const elementProps = {className: 'container', children: 'Hello World'}
     const elementType = 'div'
-    const reactElement = React.createElement(elementType,elementProps)
+    const helloElement = React.createElement('span',{},'hello')
+    const worldElement = React.createElement('span',{},'world')
+    const reactElement = React.createElement(elementType, {className: 'container', children:[helloElement,' ',worldElement]})
 
     // // This is similar to ReactDOM.render
     // rootElement.append(element)
