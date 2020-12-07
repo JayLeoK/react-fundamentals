@@ -14,7 +14,7 @@
 
     //or have message(props), then do props.children
     function message({children}) {
-      return <div className="message">{children}</div>;
+      return <div className="Message">{children}</div>;
     }
 
     // const helloElem = message({children: 'Hello World'})
@@ -26,15 +26,30 @@
     // )
 
     //EC soln 1 use react.createElement
-    const helloElement = React.createElement(message, {children:'Hello World'});
-    console.log(helloElement);
-    const goodbyeElement = React.createElement(message, {children:'Goodbye World!!!'});
-    React.createElement(message, {children:'Goodbye World'})
+    // const helloElement = React.createElement(message, {children:'Hello World'});
+    // console.log(helloElement);
+    // const goodbyeElement = React.createElement(message, {children:'Goodbye World!!!'});
+    // const element = (
+    //   <div className="container">
+    //     {helloElement}
+    //     {goodbyeElement}
+    //   </div>
+    // )
+
+
+    //EC Soln 2 use jsx custom component, capitalize Message
+    const jsUI = React.createElement('div',{},'children')
+    const jsxUI = <div>children</div>
+
+    const helloJSX = <Message>Hello World</Message>
     const element = (
       <div className="container">
-        {helloElement}{goodbyeElement}
-      </div>
+        {helloJSX}
+        <Message>Goodbye WORLD </Message>
+        </div>
     )
+
+
     
 
     // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
