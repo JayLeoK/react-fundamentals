@@ -6,16 +6,19 @@
   <script src="https://unpkg.com/react@16.13.1/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.9.3/babel.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script type="text/babel">
     // 🐨 Make a function called `message` which returns the JSX we want to share
 
     // 🐨 use that function in place of the divs below with:
     // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
 
+    //OG message function for ec 1, 2
     //or have message(props), then do props.children
-    function message({children}) {
-      return <div className="Message">{children}</div>;
-    }
+
+    // function message({children}) {
+    //   return <div className="Message">{children}</div>;
+    // }
 
     // const helloElem = message({children: 'Hello World'})
     // const goodbyeElem = message({children: 'Goodbye World'})
@@ -38,18 +41,51 @@
 
 
     //EC Soln 2 use jsx custom component, capitalize Message
-    const jsUI = React.createElement('div',{},'children')
-    const jsxUI = <div>children</div>
+    // const jsUI = React.createElement('div',{},'children')
+    // const jsxUI = <div>children</div>
 
-    const helloJSX = <Message>Hello World</Message>
-    const element = (
-      <div className="container">
-        {helloJSX}
-        <Message>Goodbye WORLD </Message>
+    // const helloJSX = <Message>Hello World</Message>
+    // const element = (
+    //   <div className="container">
+    //     {helloJSX}
+    //     <Message>Goodbye WORLD </Message>
+    //     </div>
+    // )
+
+    //EC Soln 3 proptypes for multiple props
+
+    function Message({subject, greeting}) {
+      return (
+        <div className="message">
+          {greeting}, {subject}
         </div>
+      )
+    }
+    // const PropTypes = {
+    //   string(props,propName,componentName){
+    //     const type = typeof props[propName]
+    //     if ( type !== 'string'){
+    //       return new Error(
+    //         `The component ${componentName} needs prop ${propName} needs to be a typeof string but was passed a ${type}.`
+    //       )
+    //     }
+    //   }
+    // }
+
+    //EC soln 4: import proptypes
+
+
+    Message.propTypes = {
+      subject: PropTypes.string.isRequired,
+      greeting: PropTypes.string.isRequired
+    }
+    
+    const element = (
+      <React.Fragment>
+        <Message greeting="Hello" subject="World" />
+        <Message greeting="Goodbye" subject="World" />
+      </React.Fragment>
     )
-
-
     
 
     // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
